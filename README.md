@@ -6,6 +6,7 @@ Count the number of unique people in a video.
 2. Wasted computation, as it has 2 separate models for tracking and ReID. The model that generates the appearance feature embeddings for the internal association step of the tracker could be the same as the ReID model, but in this implementation they're not, for code clarity.
 3. Performance (FPS) is not optimized.
 4. The video must end to finish the count, so it's not a real time system.
+5. The preprocessing of the input to the embedder might not be correct. TODO: check how OSNet was trained to apply the right scaling/resizing of the bbox crops.
 
 # Approach
 1. Detect all people in every frame with a YOLOv8 object detector. Using size X for best performance.
@@ -14,4 +15,4 @@ Count the number of unique people in a video.
 4. Cluster all the appearance feature embeddings. The number of clusters should indicate the number of unique people.
 
 # Code
-The notebook was tested in a Google Colab with a T4 instance.
+The notebook was developed and tested in a Google Colab with a T4 instance. The conda environment is attached but I recommend installing the packages as in the first cells of the notebook.
